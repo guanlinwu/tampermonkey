@@ -5,9 +5,10 @@
 // @description  try to take over the world!
 // @author       GuanLin Wu
 // @require      https://code.jquery.com/jquery-3.3.1.min.js
-// @include     *://xlyy100.com/*
-// @include     *://youku163.zuida-bofang.com/*
-// @include     *://fuli.zuida-youku-le.com/*
+// @updateURL    https://raw.githubusercontent.com/guanlinwu/tampermonkey/master/video.js
+// @include      *://xlyy100.com/*
+// @include      *://youku163.zuida-bofang.com/*
+// @include      *://fuli.zuida-youku-le.com/*
 // @grant        GM_notification
 // @grant        GM_setClipboard
 // @grant        unsafeWindow

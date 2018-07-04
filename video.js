@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Video Speed
+// @name         Video 加速
 // @namespace    http://tampermonkey.net/
 // @version      0.2
 // @description  try to take over the world!

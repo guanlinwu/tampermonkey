@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Video 加速
 // @namespace    http://tampermonkey.net/
-// @version      0.2.1
+// @version      0.2.2
 // @description  try to take over the world!
 // @author       GuanLin Wu
 // @require      https://code.jquery.com/jquery-3.3.1.min.js
@@ -22,7 +22,7 @@
         g_uaChrome = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
         g_uaIPad = 'Mozilla/5.0 (iPad; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
         g_uaSafari = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1.1 Safari/605.1.15';
-    const g_speed_box_style = '.speed-box{position:fixed;top:10px;left:10px;z-index:99999999999999999;display:flex;height:30px;border-radius:4px;background:rgba(255,202,202,0.62);text-align:center;overflow:hidden;border:1px solid #ffcaca}.speed-box span{display:inline-block;width:40px;flex:1;font-size:14px;line-height:30px;color:#fff;cursor:pointer}.speed-box span:hover{background:#ff572252}.speed-box span.e-active{background:#ff572252}';
+    const g_speed_box_style = '.speed-box{position:fixed;top:10px;left:10px;z-index:99999999999999999;display:flex;height:30px;border-radius:4px;background:rgba(255,202,202,0.62);text-align:center;overflow:hidden;border:1px solid rgb(255, 202, 202)}.speed-box span{display:inline-block;width:40px;flex:1;font-size:14px;line-height:30px;color:#fff;cursor:pointer}.speed-box span:hover{background:rgba(253, 116, 230, 0.36)}.speed-box span.e-active{background:rgba(255, 34, 218, 0.36)}';
     const g_video_own_style = '.video-own{position:absolute;top:50%;left:50%;transform: translate(-50%, -50%);height:80%;width:80%;z-index:9999999999999999;}';
     var util = {
         injectStyle(style) {

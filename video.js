@@ -99,7 +99,7 @@
                 var iframeUrl = !!iframe[1] ? iframe[1].getAttribute('src') : null;
                 if (!!iframeUrl) {
                     util.injectStyle('https://unpkg.com/video.js/dist/video-js.css').injectStyle(g_video_own_style);
-                    util.injectHtml('<video class="video-own video-js vjs-big-play-centered" controls preload="auto" width="100%" height="100%" data-setup="{}"><source src="http://fuli.zuida-youku-le.com/20180625/28792_4f40f0c7/index.m3u8" type="application/x-mpegURL"></video>');
+                    util.injectHtml('<video class="video-own e-size video-js vjs-big-play-centered" controls preload="auto" width="100%" height="100%" data-setup="{}"><source src="http://fuli.zuida-youku-le.com/20180625/28792_4f40f0c7/index.m3u8" type="application/x-mpegURL"></video>');
                     util.injectJS('https://unpkg.com/video.js/dist/video.js').injectJS('https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js');
                     util.injectStyle(g_speed_box_style).addSpeedBoxDom();
                     util.setSpeed = function (opts) {

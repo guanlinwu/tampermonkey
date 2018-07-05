@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Video 加速
 // @namespace    http://tampermonkey.net/
-// @version      0.3.2
+// @version      0.3.3
 // @description  try to take over the world!
 // @author       GuanLin Wu
 // @require      https://code.jquery.com/jquery-3.3.1.min.js

@@ -9,6 +9,7 @@
 // @include      *://xlyy100.com/*
 // @include      *://youku163.zuida-bofang.com/*
 // @include      *://fuli.zuida-youku-le.com/*
+// @include      *://cn2.zuidadianying.com/*
 // @include      *://pan.baidu.com/play/video*
 // @grant        GM_notification
 // @grant        GM_setClipboard

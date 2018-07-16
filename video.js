@@ -9,6 +9,7 @@
 // @include      *://xlyy100.com/*
 // @include      *://youku163.zuida-bofang.com/*
 // @include      *://fuli.zuida-youku-le.com/*
+// @include      *://pan.baidu.com/play/video*
 // @grant        GM_notification
 // @grant        GM_setClipboard
 // @grant        unsafeWindow
@@ -119,7 +120,7 @@
                     $('iframe').remove();
                 }
                 break;
-            case /(youku163\.zuida-bofang\.com)|(fuli\.zuida-youku-le\.com)/.test(host):
+            case /(youku163\.zuida-bofang\.com)|(fuli\.zuida-youku-le\.com)|(cn2\.zuidadianying\.com)/.test(host):
                 util.fakeUA(g_uaSafari).injectStyle(g_speed_box_style).addSpeedBoxDom();
                 util.setSpeed = function (opts) {
                     var videoDom = document.querySelector('video');
@@ -127,6 +128,9 @@
                     videoDom.preload = 'auto';
                     return this;
                 }
+                break;
+            case /pan\.baidu\.com/.test(host):
+
                 break;
             default:
                 break;

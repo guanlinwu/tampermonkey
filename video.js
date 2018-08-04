@@ -121,7 +121,6 @@
                     $('iframe').remove();
                 }
                 break;
-            case /(youku163\.zuida-bofang\.com)|(fuli\.zuida-youku-le\.com)|(cn2\.zuidadianying\.com)/.test(host):
                 util.fakeUA(g_uaSafari).injectStyle(g_speed_box_style).addSpeedBoxDom();
                 util.setSpeed = function (opts) {
                     var videoDom = document.querySelector('video');
@@ -130,9 +129,7 @@
                     return this;
                 }
                 break;
-            case /pan\.baidu\.com/.test(host):
 
-                break;
             default:
                 break;
         }

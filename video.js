@@ -121,6 +121,7 @@
                     $('iframe').remove();
                 }
                 break;
+            case /(pan\.baidu\.com)|(youku163\.zuida-bofang\.com)|(fuli\.zuida-youku-le\.com)|(cn2\.zuidadianying\.com)/.test(host):
                 util.fakeUA(g_uaSafari).injectStyle(g_speed_box_style).addSpeedBoxDom();
                 util.setSpeed = function (opts) {
                     var videoDom = document.querySelector('video');

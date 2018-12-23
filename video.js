@@ -69,12 +69,16 @@
             return this;
         },
         fakeUA(ua) {
+          try {
             Object.defineProperty(navigator, 'userAgent', {
                 value: ua,
                 writable: false,
                 configurable: false,
                 enumerable: true
             });
+          } catch (error) {
+            console.warn(error)
+          }
             return this;
         },
         addSpeedBoxDom() {
@@ -100,33 +104,48 @@
                 var iframe = document.querySelectorAll('iframe');
                 var iframeUrl = !!iframe[1] ? iframe[1].getAttribute('src') : null;
                 if (!!iframeUrl) {
-                    util.injectStyle('https://unpkg.com/video.js/dist/video-js.css').injectStyle(g_video_own_style);
-                    util.injectHtml('<video class="video-own e-size video-js vjs-big-play-centered" controls preload="auto" width="100%" height="100%" data-setup="{}"><source src="http://fuli.zuida-youku-le.com/20180625/28792_4f40f0c7/index.m3u8" type="application/x-mpegURL"></video>');
-                    util.injectJS('https://unpkg.com/video.js/dist/video.js').injectJS('https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js');
-                    util.injectStyle(g_speed_box_style).addSpeedBoxDom();
-                    util.setSpeed = function (opts) {
-                        var videoDom = document.querySelector('video');
-                        videoDom.playbackRate = opts.speed;
-                        videoDom.preload = 'auto';
-                        return this;
-                    }
-
                     var videoSeeUrl = iframeUrl.match(/url=(.+)/)[1];
-
-                    GM_setClipboard(videoSeeUrl, 'text');
-                    GM_notification({
-                        title: '获取视频源成功，请复制链接在支持m3u8的浏览器打开',
-                        text: `${videoSeeUrl}`
-                    });
-                    $('iframe').remove();
+                    util.injectStyle(g_speed_box_style).addSpeedBoxDom();
+                    if (iframe[1].contentWindow.dp) {
+                      util.setSpeed = function (opts) {
+                        iframe[1].contentWindow.dp.speed(opts.speed);
+                        return this;
+                      }
+                    } else {
+                      util.injectStyle('https://unpkg.com/video.js/dist/video-js.css').injectStyle(g_video_own_style);
+                      util.injectHtml(`<video class="video-own e-size video-js vjs-big-play-centered" controls preload="auto" width="100%" height="100%" data-setup="{}"><source src="${videoSeeUrl}" type="application/x-mpegURL"></video>`);
+                      util.injectJS('https://unpkg.com/video.js/dist/video.js').injectJS('https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js');
+                      util.setSpeed = function (opts) {
+                          var videoDom = document.querySelector('video');
+                          videoDom.playbackRate = opts.speed;
+                          videoDom.preload = 'auto';
+                          return this;
+                      }
+                      GM_setClipboard(videoSeeUrl, 'text');
+                      GM_notification({
+                          title: '获取视频源成功，请复制链接在支持m3u8的浏览器打开',
+                          text: `${videoSeeUrl}`
+                      });
+                      $('iframe').remove();
+                    }
                 }
                 break;
-            case /(pan\.baidu\.com)|(youku163\.zuida-bofang\.com)|(fuli\.zuida-youku-le\.com)|(cn2\.zuidadianying\.com)/.test(host):
+            case /(youku163\.zuida-bofang\.com)|(fuli\.zuida-youku-le\.com)|(cn2\.zuidadianying\.com)/.test(host):
                 util.fakeUA(g_uaSafari).injectStyle(g_speed_box_style).addSpeedBoxDom();
                 util.setSpeed = function (opts) {
                     var videoDom = document.querySelector('video');
                     videoDom.playbackRate = opts.speed;
                     videoDom.preload = 'auto';
+                    return this;
+                }
+                break;
+            /**
+             * 百度
+             */
+            case /(pan\.baidu\.com)/.test(host):
+                util.fakeUA(g_uaSafari).injectStyle(g_speed_box_style).addSpeedBoxDom();
+                util.setSpeed = function (opts) {
+                    videojs.getPlayers("video-player").html5player.tech_.setPlaybackRate(opts.speed)
                     return this;
                 }
                 break;
